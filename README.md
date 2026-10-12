@@ -16,7 +16,8 @@ my-service-agent/
 ├── design-packet.md       # 설계 패킷 일곱 항목
 └── my-agent/              # 실습 1·2의 산출물을 그대로 이관
     ├── tool-definition.md # 실습 1 도구 정의서 (get_inventory)
-    └── traces/            # 실습 2 실행 기록 원문 (trace-01.txt ~ trace-10.txt, SUMMARY.md)
+    └── traces/            # 실습 2 실행 기록 원문 (trace-01.txt ~ trace-13.txt, SUMMARY.md)
+                           # + 전후 4항목 판정표 scorecard.md (trace-11 ~ 13은 이관 뒤 추가 실행)
 ```
 
 과제 구조 밖에 `origin-tests/`를 따로 두었다. 이 설계의 출발점인 두 실습 폴더(`get_inventory_tool`, `qdrant_rag_test`)의 테스트 실행 결과 원문과 요약이다.
