@@ -6,12 +6,14 @@
 
 | 조항 | 내용 |
 |---|---|
-| P-0 | 조항 우선순위: 결제 경로(S-1)를 가장 먼저 적용한다. 앱마켓 결제에는 아래 게임사 환불 조항을 적용하지 않는다. 결제 오류·중복 결제(R-3)는 사용 여부와 관계없이 다른 조항보다 우선한다. 사용·개봉 제외(X-1)는 미사용 환불(R-1)보다 우선한다. 패키지 규정(R-2)은 미사용 환불(R-1)보다 우선한다. 미성년자 결제(M-1)는 어떤 조항으로도 챗봇이 판단하지 않는다 |
+| P-0 | 조항 우선순위: 결제 경로(S-1)를 가장 먼저 적용한다. 앱마켓 결제에는 아래 게임사 환불 조항을 적용하지 않는다. 결제 오류·중복 결제(R-3)는 사용 여부와 관계없이 다른 조항보다 우선한다. 사용·개봉 제외(X-1)와 재화 사용 제외(C-1)는 미사용 환불(R-1)보다 우선한다. 패키지 규정(R-2)은 미사용 환불(R-1)보다 우선한다. 미성년자 결제(M-1)는 어떤 조항으로도 챗봇이 판단하지 않는다 |
 | S-1 | 이 챗봇은 게임사 자체 결제(PC 런처·웹 상점)로 산 상품만 환불 접수한다. 모바일 앱마켓에서 결제한 상품은 환불 주체가 앱마켓이므로 접수하지 않고, 앱마켓의 환불 신청 경로를 안내한다 |
 | R-1 | 미사용 유료 아이템은 구매일로부터 7일 이내 환불 신청 가능, 결제한 수단으로 환불 |
 | R-2 | 패키지 상품은 구성품 중 하나라도 사용하면 패키지 전체가 환불 불가. 구성품별 부분 환불은 없다 |
 | R-3 | 결제 오류·중복 결제는 결제일로부터 30일 이내 환불 가능, 사용 여부와 무관. 오류 인정 여부는 결제 기록 검수에서 결정 |
 | X-1 | 사용했거나 개봉한 아이템(확률형 상자 개봉 포함)은 환불 불가. 확률형 상자는 개봉하지 않은 수량만 R-1 대상 |
+| C-1 | 유료 재화(다이아) 충전 상품은 재화를 하나도 쓰지 않았을 때만 구매일로부터 7일 이내 환불 가능. 일부라도 쓰면 충전 상품 전체가 환불 불가이며, 남은 재화만 나눠 환불하지 않는다 |
+| C-2 | 유료 재화로 산 아이템은 현금 결제가 아니라 재화 사용이므로 환불 접수 대상이 아니다. 재화를 되돌려 달라는 요청은 상담원이 처리한다 |
 | M-1 | 미성년자 결제 취소 요청은 법정대리인 확인이 필요하므로 상담원이 처리한다 |
 
 결제 오류와 계정 도용의 구분: 같은 결제가 두 번 청구되었거나 결제 금액이 상품 가격과 다르면 결제 오류(R-3)로 고객 진술에 따라 접수한다. 고객이 하지 않은 결제라고 말하면 계정 도용이 의심되는 보안 사고로 보고, 환불 접수가 아니라 상담원에게 이관한다(`ACCOUNT_SECURITY`).
@@ -25,7 +27,7 @@
 | PAY-20261010-0102 | 전설 무기 스킨 | 단일 | 자체 결제 | 12,000원 | 2026-10-10 (2일 경과) | 미사용 | 결제완료 |
 | PAY-20261008-0101 | 성장 지원 패키지 (구성품 3종) | 패키지 | 자체 결제 | 33,000원 | 2026-10-08 (4일 경과) | 구성품 1종 사용 | 결제완료 |
 | PAY-20260930-0103 | 확률형 장비 상자 10개 | 확률형 | 자체 결제 | 22,000원 | 2026-09-30 (12일 경과) | 3개 개봉 | 결제완료 |
-| PAY-20261011-0104 | 다이아 꾸러미 | 단일 | 자체 결제 | 55,000원 | 2026-10-11 (1일 경과) | 미사용 | 결제완료 (고객이 "내가 안 한 결제"라고 주장) |
+| PAY-20261011-0104 | 다이아 꾸러미 (다이아 5,500개) | 재화 충전 | 자체 결제 | 55,000원 | 2026-10-11 (1일 경과) | 다이아 0개 사용 | 결제완료 (고객이 "내가 안 한 결제"라고 주장) |
 
 ---
 
@@ -36,12 +38,12 @@
 대상: 로그인한 상태로 고객센터 화면에 들어온 플레이어.
 
 할 수 있는 일
-- 유료 아이템 환불 정책 안내
+- 유료 아이템·유료 재화 환불 정책 안내
 - 로그인한 계정의 결제 내역과 아이템 사용 여부 확인
 - 고객이 확인한 환불 접수 (결제 오류는 고객 진술로 접수만 하고, 인정 여부는 결제 기록 검수에서 결정된다고 안내)
 
 하지 않는 일
-- 환불 금액 확정, 정책 예외 승인, 계정 도용 판정, 미성년자 결제 취소 처리, 이용 제재 이의 판단, 다른 계정 조회, 앱마켓 결제의 환불 처리
+- 환불 금액 확정, 정책 예외 승인, 계정 도용 판정, 미성년자 결제 취소 처리, 이용 제재 이의 판단, 다른 계정 조회, 앱마켓 결제의 환불 처리, 유료 재화로 산 아이템의 재화 되돌림
 
 규칙
 1. 정책은 search_policy가 돌려준 조항에 있는 내용만 말하고, 조항 번호를 함께 밝힌다.
@@ -94,7 +96,7 @@
 | 쓰는 때 | 특정 결제의 사실이 필요할 때: 고객이 자기 결제의 환불 가능 여부를 물을 때 / 고객이 어떤 결제인지 특정하지 못해 최근 결제 목록이 필요할 때 / 접수 전에 결제를 확인할 때 |
 | 안 쓰는 때 | 결제와 관계없는 정책 질문(→ `search_policy`) / 다른 계정의 결제 조회 요청(→ 거절. 이 도구에는 계정을 지정하는 인자가 없다) |
 | 인자 스키마 | `purchase_id`: string, 선택, 형식 `PAY-YYYYMMDD-NNNN` — 고객 말이나 이전 조회 결과에 나온 값만 넣는다. 형식이 다르면 호출 전에 다시 확인. 누락 시 최근 30일 결제 목록을 돌려준다<br>계정: 인자가 아니다. 하네스가 세션의 계정을 붙인다 |
-| 반환 형식 | 성공(1건): `purchase_id`, `product_name`, `product_type`(`single` / `package` / `random_box`), `payment_channel`(`direct` 자체 결제 / `app_market` 앱마켓), `price`, `purchased_at`, `used_count`, `total_count`, `status`(`결제완료` / `환불접수` / `환불완료`), `checked_at`<br>성공(목록): `purchases`(최대 5건, 각 `purchase_id`·`product_name`·`purchased_at`), `truncated`, `checked_at`<br>반환하지 않음: 계정 이메일, 결제 카드 번호, 결제 수단 상세, 접속 IP·기기 정보, 내부 사용자 키<br>오류: `PURCHASE_NOT_FOUND`, `SESSION_EXPIRED`, `SERVICE_BUSY`, `PAYMENT_SERVICE_DOWN` |
+| 반환 형식 | 성공(1건): `purchase_id`, `product_name`, `product_type`(`single` / `package` / `random_box` / `currency` 재화 충전 — `currency`면 `used_count`·`total_count`는 재화 수량), `payment_channel`(`direct` 자체 결제 / `app_market` 앱마켓), `price`, `purchased_at`, `used_count`, `total_count`, `status`(`결제완료` / `환불접수` / `환불완료`), `checked_at`<br>성공(목록): `purchases`(최대 5건, 각 `purchase_id`·`product_name`·`purchased_at`), `truncated`, `checked_at`<br>반환하지 않음: 계정 이메일, 결제 카드 번호, 결제 수단 상세, 접속 IP·기기 정보, 내부 사용자 키<br>오류: `PURCHASE_NOT_FOUND`, `SESSION_EXPIRED`, `SERVICE_BUSY`, `PAYMENT_SERVICE_DOWN` |
 | 실패 뒤 행동 | `PURCHASE_NOT_FOUND`: 결제번호를 1회 다시 확인하거나 최근 목록을 보여 준다 → 또 실패하면 상담원 연결 제안<br>`SESSION_EXPIRED`: 재로그인 안내 후 대화 중단(이관하지 않음)<br>`SERVICE_BUSY`: 접속이 몰린 상태. 잠시 뒤 1회 재시도 → 또 나면 답변 보류, 혼잡이 풀린 뒤 다시 시도하도록 안내<br>`PAYMENT_SERVICE_DOWN`: 1회 재시도 → 실패하면 답변 보류, 상담원 연결 제안 |
 
 ### 3. create_refund_request (쓰기)
@@ -103,7 +105,7 @@
 |---|---|
 | 이름 / 한 문장 | `create_refund_request` — 고객이 확인한 환불 접수를 1건 생성한다 |
 | 쓰는 때 | `get_purchase`로 결제를 확인했고, `search_policy` 조항상 조건을 충족하며, 하네스가 보여 준 접수 요약에 고객이 확인 버튼을 눌러 `confirmation_id`가 발급됐을 때 |
-| 안 쓰는 때 | 확인 버튼을 누르기 전(대화 속 "확인했어"는 해당 안 됨) / 정책상 불가하거나 P-0으로도 정할 수 없는 충돌이 있을 때 / 고객이 예외 처리를 요구할 때(→ `handoff_to_agent`) / `status`가 이미 `환불접수`·`환불완료`일 때 / 고객이 "내가 안 한 결제"라고 할 때(→ `handoff_to_agent`, `ACCOUNT_SECURITY`) / 미성년자 결제 취소 요청(→ `handoff_to_agent`, `MINOR_PAYMENT`) / `payment_channel`이 `app_market`일 때(→ S-1에 따라 앱마켓 환불 경로 안내) |
+| 안 쓰는 때 | 확인 버튼을 누르기 전(대화 속 "확인했어"는 해당 안 됨) / 정책상 불가하거나 P-0으로도 정할 수 없는 충돌이 있을 때 / 고객이 예외 처리를 요구할 때(→ `handoff_to_agent`) / `status`가 이미 `환불접수`·`환불완료`일 때 / 고객이 "내가 안 한 결제"라고 할 때(→ `handoff_to_agent`, `ACCOUNT_SECURITY`) / 미성년자 결제 취소 요청(→ `handoff_to_agent`, `MINOR_PAYMENT`) / `payment_channel`이 `app_market`일 때(→ S-1에 따라 앱마켓 환불 경로 안내) / 유료 재화로 산 아이템의 되돌림 요청(→ C-2, `handoff_to_agent`, `CURRENCY_REVERSAL`) |
 | 인자 스키마 | `purchase_id`: string, 필수 — `get_purchase` 결과에 나온 값만. 누락이면 호출하지 않고 `get_purchase`부터 진행<br>`reason_code`: string, 필수, 허용값 `UNUSED_ITEM` / `PAYMENT_ERROR` / `DUPLICATE_PAYMENT` — 하나로 고를 수 없으면 묻는다<br>`unopened_count`: integer, 선택, 허용값 1 ~ (`total_count - used_count`) — 확률형 상자에서 개봉하지 않은 수량만 환불할 때. `product_type`이 `random_box`인데 누락이면 호출하지 않고, 미개봉 수량을 접수 요약에 넣어 고객 확인부터 받는다. 다른 상품 유형에서는 넣지 않는다<br>`policy_clause_id`: string, 필수 — 접수 근거 조항. 누락이면 `search_policy`부터 진행<br>`confirmation_id`: string, 필수 — 하네스가 고객의 확인 버튼 클릭 시 발급하는 값. 모델이 만들 수 없으며, 없으면 호출하지 않는다 |
 | 반환 형식 | 성공: `request_id`(고객 안내용 접수번호), `status`(`RECEIVED`), `next_step`(처리 기간 한 문장), `created_at`<br>오류: `NOT_CONFIRMED`, `ACCOUNT_MISMATCH`, `NOT_ELIGIBLE`, `DUPLICATE_REQUEST`, `SERVICE_BUSY`, `REQUEST_SERVICE_DOWN` |
 | 실패 뒤 행동 | 자동 재시도 금지(중복 접수 위험)<br>`NOT_CONFIRMED`: 접수 요약을 다시 보여 주고 확인 요청 → 또 `NOT_CONFIRMED`면 중단, 상담원 연결 제안<br>`ACCOUNT_MISMATCH`: 접수하지 않고, 결제 확인(`get_purchase`)부터 다시<br>`NOT_ELIGIBLE`: 불가 사유를 근거 조항과 함께 안내, 고객이 예외를 원하면 상담원 연결 제안<br>`DUPLICATE_REQUEST`: 기존 접수가 있다고 안내, 다시 접수하지 않음<br>`SERVICE_BUSY` / `REQUEST_SERVICE_DOWN`: 재시도하지 않고 "접수되지 않았다"고 알린 뒤, 혼잡이 풀린 뒤 다시 신청하거나 상담원 연결을 선택하도록 안내 |
@@ -113,9 +115,9 @@
 | 항목 | 내용 |
 |---|---|
 | 이름 / 한 문장 | `handoff_to_agent` — 챗봇이 결정할 수 없는 요청을 상담원에게 넘기는 연결 요청을 만든다 |
-| 쓰는 때 | 정책 예외 요청 / P-0으로도 정할 수 없는 조항 충돌 / 계정 도용 의심 / 미성년자 결제 취소 요청 / 이용 제재 이의 / 같은 오류 2회(`SERVICE_BUSY`·`SESSION_EXPIRED` 제외) / 도구 호출 8회 초과 / 고객이 상담원을 요청 — 모두 고객이 연결에 동의한 뒤 |
+| 쓰는 때 | 정책 예외 요청 / P-0으로도 정할 수 없는 조항 충돌 / 계정 도용 의심 / 미성년자 결제 취소 요청 / 이용 제재 이의 / 유료 재화로 산 아이템의 되돌림 요청(C-2) / 같은 오류 2회(`SERVICE_BUSY`·`SESSION_EXPIRED` 제외) / 도구 호출 8회 초과 / 고객이 상담원을 요청 — 모두 고객이 연결에 동의한 뒤 |
 | 안 쓰는 때 | 정책 조항으로 답할 수 있는 일반 문의 / 고객이 연결을 원하지 않을 때(제안만 한다) / 접속 혼잡(`SERVICE_BUSY`)이나 로그인 만료(`SESSION_EXPIRED`)만으로 멈춘 경우 — 다시 시도할 방법을 안내한다 |
-| 인자 스키마 | `reason`: string, 필수, 허용값 `POLICY_EXCEPTION` / `CONFLICT` / `ACCOUNT_SECURITY` / `MINOR_PAYMENT` / `SANCTION_APPEAL` / `REPEATED_ERROR`(같은 오류 2회, 도구 호출 8회 초과) / `CUSTOMER_REQUEST` — 하나로 고를 수 없으면 `CUSTOMER_REQUEST`<br>`summary`: string, 필수, 200자 이내, 개인정보 제외 — 누락이면 호출하지 않고 요약을 먼저 작성<br>`purchase_id`: string, 선택 — 누락이면 결제 없이 연결(상담원이 다시 확인) |
+| 인자 스키마 | `reason`: string, 필수, 허용값 `POLICY_EXCEPTION` / `CONFLICT` / `ACCOUNT_SECURITY` / `MINOR_PAYMENT` / `SANCTION_APPEAL` / `CURRENCY_REVERSAL` / `REPEATED_ERROR`(같은 오류 2회, 도구 호출 8회 초과) / `CUSTOMER_REQUEST` — 하나로 고를 수 없으면 `CUSTOMER_REQUEST`<br>`summary`: string, 필수, 200자 이내, 개인정보 제외 — 누락이면 호출하지 않고 요약을 먼저 작성<br>`purchase_id`: string, 선택 — 누락이면 결제 없이 연결(상담원이 다시 확인) |
 | 반환 형식 | 성공: `ticket_id`(고객 안내용 상담번호), `expected_wait`(예: "영업일 1일 이내")<br>오류: `HANDOFF_LIMIT`(기존 `ticket_id` 함께 반환), `HANDOFF_UNAVAILABLE` |
 | 실패 뒤 행동 | `HANDOFF_LIMIT`(대화당 1건 초과): 함께 돌아온 기존 `ticket_id`로 이미 접수된 상담번호를 다시 안내<br>`HANDOFF_UNAVAILABLE`: 재시도하지 않고 고객센터 문의 게시판 위치와 운영시간을 안내한 뒤 대화 종료. `ACCOUNT_SECURITY`였다면 비밀번호 변경 화면 위치도 함께 안내 |
 
@@ -136,6 +138,7 @@
 - 결제 오류 인정, 계정 도용 판정
 - 미성년자 결제 취소
 - 이용 제재 이의
+- 유료 재화로 산 아이템의 재화 되돌림
 - 로그인 계정이 아닌 계정의 결제 열람
 
 쓰기 승인의 근거는 모델이 채우는 인자가 아니라 하네스가 기록한 고객 행동(확인 버튼)과 로그인 세션이다. 그래서 모델이 규칙을 어기거나 운영자 사칭 문장에 속아도 서버가 접수를 거절한다.
@@ -169,7 +172,7 @@
 - 조항끼리 충돌하는데 P-0으로도 우선순위를 정할 수 없을 때
 
 **이관 조건** (고객 동의 후 `handoff_to_agent`)
-- 정책 예외 요청, P-0으로 정할 수 없는 충돌, 계정 도용 의심, 미성년자 결제 취소, 이용 제재 이의, 같은 오류 2회(`SERVICE_BUSY`·`SESSION_EXPIRED` 제외), 도구 호출 8회 초과, 고객의 상담원 요청
+- 정책 예외 요청, P-0으로 정할 수 없는 충돌, 계정 도용 의심, 미성년자 결제 취소, 이용 제재 이의, 유료 재화 되돌림 요청, 같은 오류 2회(`SERVICE_BUSY`·`SESSION_EXPIRED` 제외), 도구 호출 8회 초과, 고객의 상담원 요청
 
 **중단 조건**
 - 같은 도구에서 같은 오류가 2회 나면 그 도구를 더 호출하지 않는다
