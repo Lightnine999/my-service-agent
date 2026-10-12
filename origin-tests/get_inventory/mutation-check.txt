@@ -1,0 +1,23 @@
+# 실행: python3 mutation_check.py
+# 위치: ~/aiffel_work/get_inventory_tool
+# 일시: 2026-10-12 23:21:07 KST
+
+== baseline (변형 없음): OK
+== M1 SKU 검증 제거: FAILED (failures=1, errors=1)
+   - 실패: test_missing_sku_asks_for_identifier_without_calling_api
+   - 실패: test_sku_too_short_is_rejected
+== M2 창고 enum 검증 제거: FAILED (failures=1)
+   - 실패: test_unknown_warehouse_asks_for_allowed_codes_without_calling_api
+== M3 응답 필터 제거 (원가 노출): FAILED (failures=1)
+   - 실패: test_internal_cost_is_removed_from_response
+== M4 재시도 상한 제거: FAILED (failures=1)
+   - 실패: test_transient_error_stops_after_one_retry
+== M5 검증 우회 (검증 실패도 호출): FAILED (failures=5)
+   - 실패: test_unknown_warehouse_asks_for_allowed_codes_without_calling_api
+   - 실패: test_fabricated_sku_not_in_request_is_rejected
+   - 실패: test_missing_sku_asks_for_identifier_without_calling_api
+   - 실패: test_partial_sku_match_is_rejected
+   - 실패: test_sku_too_short_is_rejected
+== M6 질문 대조 규칙 제거 (지어낸 SKU 통과): FAILED (failures=2)
+   - 실패: test_fabricated_sku_not_in_request_is_rejected
+   - 실패: test_partial_sku_match_is_rejected

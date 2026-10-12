@@ -1,0 +1,22 @@
+# 실행: python3 -m unittest test_regression -v
+# 위치: ~/aiffel_work/get_inventory_tool
+# 일시: 2026-10-12 23:21:07 KST
+
+test_unknown_warehouse_asks_for_allowed_codes_without_calling_api (test_regression.Case1_UnknownWarehouseNotRetried.test_unknown_warehouse_asks_for_allowed_codes_without_calling_api) ... ok
+test_fabricated_sku_not_in_request_is_rejected (test_regression.Case2_MissingSkuNotGuessed.test_fabricated_sku_not_in_request_is_rejected)
+실제 실패 재현: 모델이 'SKU123456789'를 지어냈다. 형식은 맞지만 질문에 없으므로 막아야 한다. ... ok
+test_missing_sku_asks_for_identifier_without_calling_api (test_regression.Case2_MissingSkuNotGuessed.test_missing_sku_asks_for_identifier_without_calling_api) ... ok
+test_partial_sku_match_is_rejected (test_regression.Case2_MissingSkuNotGuessed.test_partial_sku_match_is_rejected)
+'ABC-12'는 질문의 'ABC-1234' 일부일 뿐이므로 독립 토큰이 아니다. ... ok
+test_sku_match_is_case_insensitive (test_regression.Case2_MissingSkuNotGuessed.test_sku_match_is_case_insensitive) ... ok
+test_sku_too_short_is_rejected (test_regression.Case2_MissingSkuNotGuessed.test_sku_too_short_is_rejected) ... ok
+test_internal_cost_is_removed_from_response (test_regression.Case3_CostNotLeaked.test_internal_cost_is_removed_from_response) ... ok
+test_transient_error_retried_exactly_once (test_regression.ControlCases.test_transient_error_retried_exactly_once) ... ok
+test_transient_error_stops_after_one_retry (test_regression.ControlCases.test_transient_error_stops_after_one_retry) ... ok
+test_valid_request_passes_through_once (test_regression.ControlCases.test_valid_request_passes_through_once) ... ok
+test_warehouse_optional_when_omitted (test_regression.ControlCases.test_warehouse_optional_when_omitted) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.001s
+
+OK

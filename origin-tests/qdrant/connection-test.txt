@@ -1,0 +1,23 @@
+# 실행: MCP stdio 직접 호출 (initialize → tools/list → qdrant-store → qdrant-find)
+# 위치: ~/aiffel_work/qdrant_rag_test (.mcp.json 설정으로 서버 실행)
+# 일시: 2026-10-12 23:21:07 KST
+# 설정:
+#   {
+#     "mcpServers": {
+#       "qdrant": {
+#         "command": "uvx",
+#         "args": ["mcp-server-qdrant"],
+#         "env": {
+#           "QDRANT_URL": ":memory:",
+#           "COLLECTION_NAME": "policies",
+#           "EMBEDDING_PROVIDER": "fastembed",
+#           "EMBEDDING_MODEL": "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
+#         }
+#       }
+#     }
+#   }
+
+INITIALIZE: OK
+TOOLS: ['qdrant-find', 'qdrant-store']
+STORE: {"content": [{"type": "text", "text": "Remembered: 연차는 입사 1년 후 15일이 발생하며, 사용 신청은 최소 3일 전에 해야 한다. in collection policies"}], "isError": false}
+FIND: {"content": [{"type": "text", "text": "[\n  \"Results for the query '연차 휴가 신청 기간'\",\n  \"<entry><content>연차는 입사 1년 후 15일이 발생하며, 사용 신청은 최소 3일 전에 해야 한다.</content><metadata>{\\\"source\\\": \\\"test-policy\\\"}</metadata></entry>\"\n]"}], "isError": false}

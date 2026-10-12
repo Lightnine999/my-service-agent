@@ -19,6 +19,8 @@ my-service-agent/
     └── traces/            # 실습 2 실행 기록 원문 (trace-01.txt ~ trace-10.txt, SUMMARY.md)
 ```
 
+과제 구조 밖에 `origin-tests/`를 따로 두었다. 이 설계의 출발점인 두 실습 폴더(`get_inventory_tool`, `qdrant_rag_test`)의 테스트 실행 결과 원문과 요약이다.
+
 ## 설계 결정 요약
 
 **도구를 네 개만 둔 이유**
