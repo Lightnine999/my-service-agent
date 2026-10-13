@@ -22,6 +22,15 @@ my-service-agent/
 
 과제 구조 밖에 `origin-tests/`를 따로 두었다. 이 설계의 출발점인 두 실습 폴더(`get_inventory_tool`, `qdrant_rag_test`)의 테스트 실행 결과 원문과 요약이다.
 
+**근원지 (실습 원본)**
+
+| 폴더 | 실습 | 이 저장소로 옮긴 것 |
+|---|---|---|
+| [aiffel_work/get_inventory_tool](https://github.com/Lightnine999/aiffel_work/tree/main/get_inventory_tool) | 재고 조회 도구 + 하네스 | `my-agent/tool-definition.md`(원본 `get_inventory.json`), `my-agent/traces/`(원본 `tool-lab/`), `origin-tests/get_inventory/` |
+| [aiffel_work/qdrant_rag_test](https://github.com/Lightnine999/aiffel_work/tree/main/qdrant_rag_test) | Qdrant MCP 서버 연결 | `origin-tests/qdrant/` (연결 테스트를 다시 실행한 기록) |
+
+재고 실습의 실행 스크립트(`failure_cases_harness.py`, `scorecard_run.py` 등)와 하네스 코드, 트레이스 원본은 근원지 폴더에 있다.
+
 ## 설계 결정 요약
 
 **도구를 네 개만 둔 이유**
